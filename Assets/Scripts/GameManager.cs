@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject player1;
     public GameObject player2;
+
+    public Text endText;
 
     int lives_1 = 3, lives_2 = 3;
 
@@ -31,6 +34,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        endText.gameObject.SetActive(false);
         WaitForPlayer(1);
     }
 
@@ -39,23 +43,25 @@ public class GameManager : MonoBehaviour
         if(waiting1){
             if(Input.GetKey(KeyCode.Space)){
                 waiting1 = false;
+                float x = Random.Range (.2f, 1f);
                 float y = Random.Range (-.75f, .75f);
 
-                balls[0].GetComponent<Rigidbody2D>().AddForce((new Vector2(1f,y)).normalized * 600);
+                balls[0].GetComponent<Rigidbody2D>().AddForce((new Vector2(x,y)).normalized * 600);
             }
             balls[0].transform.position = new Vector2(player1.transform.position.x + 0.35f, player1.transform.position.y);
         } else if(waiting2){
             if(Input.GetKey(KeyCode.Space)){
                 waiting2 = false;
+                float x = Random.Range (-.2f, -1f);
                 float y = Random.Range (-.75f, .75f);
 
-                balls[0].GetComponent<Rigidbody2D>().AddForce((new Vector2(-1f,y)).normalized * 600);
+                balls[0].GetComponent<Rigidbody2D>().AddForce((new Vector2(x,y)).normalized * 600);
             }
             balls[0].transform.position = new Vector2(player2.transform.position.x - 0.35f, player2.transform.position.y);
         }
     }
 
-    void WaitForPlayer(int playerIndex){
+    public void WaitForPlayer(int playerIndex){
         waiting1 = false;
         waiting2 = false;
 
@@ -91,14 +97,14 @@ public class GameManager : MonoBehaviour
             lives_1 -= 1;
 
             if(lives_1 <= 0){
-                Debug.Log("Player 1 lost");
+                EndGame(2);
             }
             WaitForPlayer(1);
         } else if(brick.transform.parent.name.Equals("Goal_2")){
             lives_2 -= 1;
 
-            if(lives_2 <= 0){
-                Debug.Log("Player 2 lost");
+            if(lives_2 <= 0){                
+                EndGame(1);
             }
             WaitForPlayer(2);
         } else {
@@ -106,6 +112,12 @@ public class GameManager : MonoBehaviour
         }
         
         brick.SetActive(false);
+    }
+
+    void EndGame(int winner){
+        endText.text = "Player " + winner + " wins!";
+        endText.gameObject.SetActive(true);
+        Time.timeScale = 0;
     }
 
     

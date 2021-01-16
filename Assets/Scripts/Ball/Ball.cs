@@ -18,6 +18,25 @@ public class Ball : MonoBehaviour
             Destroy(other.gameObject);
         } else if(other.gameObject.CompareTag("goal_brick")){
             GameManager.instance.RemoveGoalBrick(other.gameObject);
+        } else if(other.gameObject.CompareTag("Limit")){
+            if(other.gameObject.name.Equals("Limit1")){
+                GameManager.instance.WaitForPlayer(1);
+            } else if(other.gameObject.name.Equals("Limit2")){
+                GameManager.instance.WaitForPlayer(2);
+            } else {
+                Debug.Log("Limit not defined");
+            }
+        }
+    }
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.CompareTag("Limit")){
+            if(other.gameObject.name.Equals("Limit1")){
+                GameManager.instance.WaitForPlayer(1);
+            } else if(other.gameObject.name.Equals("Limit2")){
+                GameManager.instance.WaitForPlayer(2);
+            } else {
+                Debug.Log("Limit not defined");
+            }
         }
     }
 }
