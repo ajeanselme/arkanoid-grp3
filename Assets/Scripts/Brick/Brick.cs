@@ -7,7 +7,7 @@ public class Brick : MonoBehaviour
 {
     public int hitPoint = 1;
 
-    private void OnCollisionEnter2D(Collision2D other)
+/*    private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ball"))
         {
@@ -24,5 +24,5 @@ public class Brick : MonoBehaviour
             Destroy(gameObject);
             FindObjectOfType<BricksManager>().RemoveBrick(this);
         }
-    }
+    }*/
 }

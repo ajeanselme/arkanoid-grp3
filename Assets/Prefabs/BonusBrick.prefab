@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 3628896770103551194}
   - component: {fileID: 7920893196345287097}
   - component: {fileID: 7387722369665908004}
+  - component: {fileID: 316410366721327955}
   m_Layer: 0
-  m_Name: Brick
+  m_Name: BonusBrick
   m_TagString: brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 302f9ec8d8ba9e942912ab06b10f2d92, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.07075471, b: 0.07075471, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -122,3 +123,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoint: 1
+--- !u!114 &316410366721327955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8407118243023051752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57283d0bd8535434daa12c5a6e483080, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballObject: {fileID: 7095903640246014581, guid: 1cc06497dfb608e408502287c2dd3b59,
+    type: 3}
+  accBonus: {fileID: 3402991136681037254, guid: 5f6f4c623d31d6344811a11f5b73c27e,
+    type: 3}
+  decBonus: {fileID: 2278656012651328001, guid: 486561fe56ca3d84a92e0ce386f86523,
+    type: 3}
+  splBonus: {fileID: 3577902608884251148, guid: 99cd54b8d95fb614186237308b96625b,
+    type: 3}
+  speedValue: 1.05

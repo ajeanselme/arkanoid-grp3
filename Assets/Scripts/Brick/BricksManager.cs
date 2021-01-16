@@ -7,8 +7,11 @@ public class BricksManager : MonoBehaviour
 
     public int rows;
     public int colums;
+    [Range(0, 100)]
+    public int bonusDropRatio;
     public float spacing;
     public GameObject brickPrefab;
+    public GameObject bonusBrickPrefab;
 
     private List<GameObject> bricks = new List<GameObject>();
 
@@ -40,8 +43,19 @@ public class BricksManager : MonoBehaviour
                 Vector2 spawnPos = (Vector2)transform.position + new Vector2(
                     x * (1 + spacing),
                     -y * (0.5f + spacing));
-                GameObject brick = Instantiate(brickPrefab, spawnPos, Quaternion.identity);
-                bricks.Add(brick);
+                int randomPercent = Random.Range(0, 100);
+                if(randomPercent < bonusDropRatio)
+                {
+                    GameObject bonusBrick = Instantiate(bonusBrickPrefab, spawnPos, Quaternion.identity);//bonus brick
+                    bricks.Add(bonusBrick);
+                }
+                else
+                {
+                    GameObject brick = Instantiate(brickPrefab, spawnPos, Quaternion.identity); //classic brick
+                    bricks.Add(brick);
+                }
+                
+                
             }
         }
     }
