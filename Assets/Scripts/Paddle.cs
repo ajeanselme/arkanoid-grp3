@@ -8,20 +8,58 @@ public class Paddle : MonoBehaviour
     public float speed;
     public Rigidbody2D rb;
 
-    private float movement;
+    bool blockTop, blockBot;
+
+    
 
 
     void Update()
     {
         if (isPlayer1)
         {
-            movement = Input.GetAxisRaw("Horizontal");
+            if(Input.GetKey(KeyCode.Z)){
+                if(!blockTop){
+                    transform.position += Vector3.up * speed * Time.deltaTime;
+                }
+                if(blockBot){
+                    blockBot = false;
+                }
+            } else if(Input.GetKey(KeyCode.S)) {
+                if(!blockBot) {
+                    transform.position += Vector3.down * speed * Time.deltaTime;
+                }
+                
+                if(blockTop){
+                    blockTop = false;
+                }
+            }
         }
         else
         {
-            movement = Input.GetAxisRaw("Horizontal2");
+            if(Input.GetKey(KeyCode.UpArrow)){
+                if(!blockTop){
+                    transform.position += Vector3.up * speed * Time.deltaTime;
+                }
+                if(blockBot){
+                    blockBot = false;
+                }
+            } else if(Input.GetKey(KeyCode.DownArrow)) {
+                if(!blockBot) {
+                    transform.position += Vector3.down * speed * Time.deltaTime;
+                }
+                
+                if(blockTop){
+                    blockTop = false;
+                }
+            }
         }
+    }
 
-        rb.velocity = new Vector2(rb.velocity.y, movement * speed);
+    void OnCollisionEnter2D(Collision2D hit){
+        if(hit.gameObject.name.Equals("ColliderTop")){
+            blockTop = true;
+        } else if(hit.gameObject.name.Equals("ColliderBottom")){
+            blockBot = true;
+        }
     }
 }
