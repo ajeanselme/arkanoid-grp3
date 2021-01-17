@@ -16,3 +16,4 @@ There are 3 types of bonuses:
 ## Workflow
 Each feature is made on its own branch. When the feature is done it's moved under the Review panel of our GitKraken Board. <br>
 Once in review Antoine Jeanselme will merge it on origin/dev. This branch can then be merged back on any branch to have the up to date content. <br>
+[Todo Board](https://app.gitkraken.com/glo/board/X-iEum8EBQARcxMn)
