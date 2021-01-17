@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     
-    
-
-
-    List<GameObject> balls = new List<GameObject>();
+    public List<GameObject> balls = new List<GameObject>();
 
     public GameObject ballPrefab;
+    public GameObject brickPrefab;
+    
+    public GameObject accBonus, decBonus, splBonus;
 
     public GameObject player1;
     public GameObject player2;
@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
     }
+
     void Start()
     {
         endText.gameObject.SetActive(false);
@@ -62,6 +63,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void WaitForPlayer(int playerIndex){
+        if(balls.Count > 1){
+            return;
+        }
         waiting1 = false;
         waiting2 = false;
 
@@ -112,6 +116,42 @@ public class GameManager : MonoBehaviour
         }
         
         brick.SetActive(false);
+    }
+
+    public void SpawnBrick(){
+        float rand = Random.value;
+        if(rand > 0.5f){
+            float x = Random.Range (-5f, 5f);
+            float y = Random.Range (-4f, 4f);
+
+            GameObject brick = Instantiate(brickPrefab, new Vector3(x,y,0f), Quaternion.identity);
+
+            brick.transform.SetParent(null);
+            brick.transform.localScale = new Vector2(.2468185f, 0.3723528f);
+            brick.transform.eulerAngles = new Vector3(
+                brick.transform.eulerAngles.x,
+                brick.transform.eulerAngles.y,
+                brick.transform.eulerAngles.z - 90
+            );
+        }
+    }
+    
+    
+    public void DropBonus(Transform ballTr)
+    {
+        float rand = Random.value;
+        if(rand < 0.5f){
+
+        } else if(rand < 0.73){
+                //downspeed upgrade
+                Instantiate(decBonus, ballTr.position, Quaternion.identity);
+        }else if(rand < 0.86){
+                //speed upgrade
+                Instantiate(accBonus, ballTr.position, Quaternion.identity);
+        } else {
+                //split upgrade
+                Instantiate(splBonus, ballTr.position, Quaternion.identity);
+        }
     }
 
     void EndGame(int winner){
