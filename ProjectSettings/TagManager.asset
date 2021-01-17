@@ -7,6 +7,8 @@ TagManager:
   - brick
   - Ball
   - Bonus
+  - goal_brick
+  - Limit
   layers:
   - Default
   - TransparentFX

@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallController : MonoBehaviour
+public class Ball : MonoBehaviour
 {
+<<<<<<< HEAD:Assets/Scripts/Ball/BallController.cs
     Rigidbody2D rb;
     public GameObject ballPrefab;
     public float speed = 600, ratioSpeed = 1.1f;
 
     bool canSpawn = true;
+=======
+    public Rigidbody2D rb;
+    private GameManager gm;
+>>>>>>> game_loop:Assets/Scripts/Ball/Ball.cs
     
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-
-        rb.AddForce(Vector2.up * speed);
     }
 
     private void Update()
@@ -68,6 +71,27 @@ public class BallController : MonoBehaviour
                 //newBall.GetComponent<Rigidbody2D>().velocity = rb.velocity;
             }
             Destroy(other.gameObject);
+        } else if(other.gameObject.CompareTag("goal_brick")){
+            GameManager.instance.RemoveGoalBrick(other.gameObject);
+        } else if(other.gameObject.CompareTag("Limit")){
+            if(other.gameObject.name.Equals("Limit1")){
+                GameManager.instance.WaitForPlayer(1);
+            } else if(other.gameObject.name.Equals("Limit2")){
+                GameManager.instance.WaitForPlayer(2);
+            } else {
+                Debug.Log("Limit not defined");
+            }
+        }
+    }
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.CompareTag("Limit")){
+            if(other.gameObject.name.Equals("Limit1")){
+                GameManager.instance.WaitForPlayer(1);
+            } else if(other.gameObject.name.Equals("Limit2")){
+                GameManager.instance.WaitForPlayer(2);
+            } else {
+                Debug.Log("Limit not defined");
+            }
         }
 
         IEnumerator SpawnDelay()
