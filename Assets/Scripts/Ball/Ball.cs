@@ -38,5 +38,12 @@ public class Ball : MonoBehaviour
                 Debug.Log("Limit not defined");
             }
         }
+
+        IEnumerator SpawnDelay()
+        {
+            yield return new WaitForEndOfFrame();
+            canSpawn = true;
+            print(canSpawn);
+        }
     }
 }

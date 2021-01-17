@@ -6,6 +6,7 @@ TagManager:
   tags:
   - brick
   - Ball
+  - Bonus
   - goal_brick
   - Limit
   layers:
