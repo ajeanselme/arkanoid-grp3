@@ -8,7 +8,7 @@ public class Ball : MonoBehaviour
 
     public Rigidbody2D rb;
     
-    float pickupCooldown = 3f;
+    float pickupCooldown = .5f;
     
     void Start()
     {
@@ -24,6 +24,7 @@ public class Ball : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other){
         //SPAWN BONUS
         if(other.gameObject.CompareTag("brick")){
+            pickupCooldown = .5f;
             GameManager.instance.DropBonus(gameObject.transform);
             Destroy(other.gameObject);
         }
@@ -47,7 +48,6 @@ public class Ball : MonoBehaviour
                 Debug.Log("Limit not defined");
             }
         } else if(other.gameObject.CompareTag("Bonus") && pickupCooldown <= 0f){
-            Debug.Log(pickupCooldown);
             if (other.gameObject.name.StartsWith("Acc"))
             {
                 gameObject.GetComponent<Rigidbody2D>().velocity *= ratioSpeed;

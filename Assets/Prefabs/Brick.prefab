@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6314276598552956985}
   - component: {fileID: 3628896770103551194}
-  - component: {fileID: 7387722369665908004}
   - component: {fileID: 5950856976844367913}
   m_Layer: 0
   m_Name: Brick
@@ -83,19 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7387722369665908004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8407118243023051752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9258e42dfbb64354aaecd75a23c17a81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitPoint: 1
 --- !u!61 &5950856976844367913
 BoxCollider2D:
   m_ObjectHideFlags: 0

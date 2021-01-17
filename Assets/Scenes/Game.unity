@@ -2333,7 +2333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer1: 1
-  speed: 11
+  speed: 12
   rb: {fileID: 1590673186}
 --- !u!50 &1590673186
 Rigidbody2D:
@@ -2553,7 +2553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer1: 0
-  speed: 11
+  speed: 12
   rb: {fileID: 1809154209}
 --- !u!50 &1809154209
 Rigidbody2D:

@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     bool waiting1, waiting2;
 
+    float brickCooldown = 3f;
+
 
     public static GameManager instance;
 
@@ -62,6 +64,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void FixedUpdate(){
+        
+        brickCooldown -= Time.deltaTime;
+        if(brickCooldown < 0){
+            brickCooldown = 2f;
+            SpawnBrick();
+        }
+    }
+
     public void WaitForPlayer(int playerIndex){
         if(balls.Count > 1){
             return;
@@ -86,7 +97,7 @@ public class GameManager : MonoBehaviour
         GameObject newBall = Instantiate(ballPrefab, transform);
         balls.Add(newBall);
         newBall.transform.SetParent(null);
-        newBall.transform.localScale = new Vector3(0.35f,0.35f,0.35f);
+        newBall.transform.localScale = new Vector3(0.45f,0.45f,0.45f);
 
         if(playerIndex == 1){
             waiting1 = true;
@@ -139,7 +150,7 @@ public class GameManager : MonoBehaviour
     
     public void DropBonus(Transform ballTr)
     {
-        float rand = Random.value;
+        float rand = UnityEngine.Random.Range(0f,1f);
         if(rand < 0.5f){
 
         } else if(rand < 0.73){
